@@ -1,0 +1,33 @@
+# /etc/conf.d/yatripayd: config file for /etc/init.d/yatripayd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/yatripay/yatripay.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/yatripayd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/yatripayd.pid"
+
+# Where to write yatripayd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/yatripayd"
+
+# User and group to own yatripayd process
+#BITCOIND_USER="yatripay"
+#BITCOIND_GROUP="yatripay"
+
+# Path to yatripayd executable
+#BITCOIND_BIN="/usr/bin/yatripayd"
+
+# Nice value to run yatripayd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#BITCOIND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for yatripayd to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+BITCOIND_SIGTERM_TIMEOUT=600

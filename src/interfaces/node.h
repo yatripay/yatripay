@@ -48,7 +48,7 @@ struct BlockAndHeaderTipInfo
     double verification_progress;
 };
 
-//! Top-level interface for a bitcoin node (bitcoind process).
+//! Top-level interface for a yatripay node (yatripayd process).
 class Node
 {
 public:

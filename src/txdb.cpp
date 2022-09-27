@@ -310,7 +310,7 @@ bool CBlockTreeDB::ReadStakeIndex(unsigned int height, uint160& address){
     while (pcursor->Valid()) {
         boost::this_thread::interruption_point();
         std::pair<char, CHeightTxIndexKey> key;
-        pcursor->GetKey(key); //note: it's apparently ok if this returns an error https://github.com/bitcoin/bitcoin/issues/7890
+        pcursor->GetKey(key); //note: it's apparently ok if this returns an error https://github.com/yatripay/yatripay/issues/7890
         if (key.first == DB_STAKEINDEX) {
             pcursor->GetValue(address);
             return true;
@@ -328,7 +328,7 @@ bool CBlockTreeDB::ReadStakeIndex(unsigned int high, unsigned int low, std::vect
     while (pcursor->Valid()) {
         boost::this_thread::interruption_point();
         std::pair<char, CHeightTxIndexKey> key;
-        pcursor->GetKey(key); //note: it's apparently ok if this returns an error https://github.com/bitcoin/bitcoin/issues/7890
+        pcursor->GetKey(key); //note: it's apparently ok if this returns an error https://github.com/yatripay/yatripay/issues/7890
         if (key.first == DB_STAKEINDEX && key.second.height < high) {
             uint160 value;
             pcursor->GetValue(value);

@@ -3,18 +3,18 @@
 
 Bitcoin Core version 0.19.0 is now available from:
 
-  <https://bitcoincore.org/bin/bitcoin-core-0.19.0/>
+  <https://yatripaycore.org/bin/yatripay-core-0.19.0/>
 
 This release includes new features, various bug fixes and performance
 improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/yatripay/yatripay/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://yatripaycore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
@@ -22,7 +22,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes in some cases), then run the
 installer (on Windows) or just copy over `/Applications/Bitcoin-Qt` (on Mac)
-or `bitcoind`/`bitcoin-qt` (on Linux).
+or `yatripayd`/`yatripay-qt` (on Linux).
 
 Upgrading directly from a version of Bitcoin Core that has reached its EOL is
 possible, but it might take some time if the data directory needs to be migrated. Old
@@ -197,16 +197,16 @@ Changes to Wallet or GUI related settings can be found in the GUI or Wallet  sec
 Tools and Utilities
 -------------------
 
-- The `connections` field of `bitcoin-cli -getinfo` is expanded to return a JSON
+- The `connections` field of `yatripay-cli -getinfo` is expanded to return a JSON
   object with `in`, `out` and `total` numbers of peer connections. It previously
   returned a single integer value for the total number of peer connections. (#19405)
 
-- A new `bitcoin-cli -generate` command, equivalent to RPC `generatenewaddress`
+- A new `yatripay-cli -generate` command, equivalent to RPC `generatenewaddress`
   followed by `generatetoaddress`, can generate blocks for command line testing
   purposes. This is a client-side version of the
   former `generate` RPC. See the help for details. (#19133)
 
-- The `bitcoin-cli -getinfo` command now displays the wallet name and balance for
+- The `yatripay-cli -getinfo` command now displays the wallet name and balance for
   each of the loaded wallets when more than one is loaded (e.g. in multiwallet
   mode) and a wallet is not specified with `-rpcwallet`. (#18594)
 
@@ -240,7 +240,7 @@ Wallet
   empty. Previously it failed. (#17219)
 
 - The `-salvagewallet` startup option has been removed. A new `salvage` command
-  has been added to the `bitcoin-wallet` tool which performs the salvage
+  has been added to the `yatripay-wallet` tool which performs the salvage
   operations that `-salvagewallet` did. (#18918)
 
 - A new configuration flag `-maxapsfee` has been added, which sets the max
@@ -282,20 +282,20 @@ Wallet
 
 Bitcoin Core will no longer automatically create new wallets on startup. It will
 load existing wallets specified by `-wallet` options on the command line or in
-`bitcoin.conf` or `settings.json` files. And by default it will also load a
+`yatripay.conf` or `settings.json` files. And by default it will also load a
 top-level unnamed ("") wallet. However, if specified wallets don't exist,
 Bitcoin Core will now just log warnings instead of creating new wallets with
 new keys and addresses like previous releases did.
 
 New wallets can be created through the GUI (which has a more prominent create
-wallet option), through the `bitcoin-cli createwallet` or `bitcoin-wallet
+wallet option), through the `yatripay-cli createwallet` or `yatripay-wallet
 create` commands, or the `createwallet` RPC. (#15454)
 
 ### Experimental Descriptor Wallets
 
 Please note that Descriptor Wallets are still experimental and not all expected functionality
 is available. Additionally there may be some bugs and current functions may change in the future.
-Bugs and missing functionality can be reported to the [issue tracker](https://github.com/bitcoin/bitcoin/issues).
+Bugs and missing functionality can be reported to the [issue tracker](https://github.com/yatripay/yatripay/issues).
 
 0.21 introduces a new type of wallet - Descriptor Wallets. Descriptor Wallets store
 scriptPubKey information using descriptors. This is in contrast to the Legacy Wallet
@@ -423,7 +423,7 @@ GUI changes
 - Wallets created or loaded in the GUI will now be automatically loaded on
   startup, so they don't need to be manually reloaded next time Bitcoin Core is
   started. The list of wallets to load on startup is stored in
-  `\<datadir\>/settings.json` and augments any command line or `bitcoin.conf`
+  `\<datadir\>/settings.json` and augments any command line or `yatripay.conf`
   `-wallet=` settings that specify more wallets to load. Wallets that are
   unloaded in the GUI get removed from the settings list so they won't load
   again automatically next startup. (#19754)
@@ -592,4 +592,4 @@ Thanks to everyone who directly contributed to this release:
 - zenosage
 
 As well as to everyone that helped with translations on
-[Transifex](https://www.transifex.com/bitcoin/bitcoin/).
+[Transifex](https://www.transifex.com/yatripay/yatripay/).

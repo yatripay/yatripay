@@ -72,7 +72,7 @@ For linux RISC-V 64-bit cross compilation (there are no packages for 32-bit):
 
     sudo apt-get install g++-riscv64-linux-gnu binutils-riscv64-linux-gnu
 
-RISC-V known issue: gcc-7.3.0 and gcc-7.3.1 result in a broken `test_bitcoin` executable (see https://github.com/bitcoin/bitcoin/pull/13543),
+RISC-V known issue: gcc-7.3.0 and gcc-7.3.1 result in a broken `test_yatripay` executable (see https://github.com/yatripay/yatripay/pull/13543),
 this is apparently fixed in gcc-8.1.0.
 
 For linux S390X cross compilation:
@@ -124,7 +124,7 @@ from llvm.org. Clang 8 or later is required.</dd>
 </dl>
 
 If some packages are not built, for example `make NO_WALLET=1`, the appropriate
-options will be passed to bitcoin's configure. In this case, `--disable-wallet`.
+options will be passed to yatripay's configure. In this case, `--disable-wallet`.
 
 ### Additional targets
 

@@ -7,7 +7,7 @@
 #define BITCOIN_ADDRMAN_H
 
 #include <clientversion.h>
-#include <config/bitcoin-config.h>
+#include <config/yatripay-config.h>
 #include <netaddress.h>
 #include <protocol.h>
 #include <random.h>

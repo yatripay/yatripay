@@ -698,7 +698,7 @@
                                                             <string>&amp;Create new staking address</string>
                                                         </property>
                                                         <property name="icon">
-                                                            <iconset resource="../bitcoin.qrc">
+                                                            <iconset resource="../yatripay.qrc">
                                                                 <normaloff>:/icons/receiving_addresses</normaloff>:/icons/receiving_addresses</iconset>
                                                         </property>
                                                         <property name="autoDefault">

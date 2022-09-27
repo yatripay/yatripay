@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: bitcoind.service
-Upstart: bitcoind.conf
-OpenRC:  bitcoind.openrc
-         bitcoind.openrcconf
-CentOS:  bitcoind.init
-macOS:   org.bitcoin.bitcoind.plist
+SystemD: yatripayd.service
+Upstart: yatripayd.conf
+OpenRC:  yatripayd.openrc
+         yatripayd.openrcconf
+CentOS:  yatripayd.init
+macOS:   org.yatripay.yatripayd.plist
 ```
 have been made available to assist packagers in creating node packages here.
 
