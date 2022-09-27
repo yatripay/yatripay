@@ -574,7 +574,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     CAmount& nConflictingFees = ws.m_conflicting_fees;
     size_t& nConflictingSize = ws.m_conflicting_size;
 
-    bool fColdStakingActive = ::ChainActive().Height() >= Params().GetConsensus().BPSColdStakeEnableHeight;
+    bool fColdStakingActive = ::ChainActive().Height() >= Params().GetConsensus().YTPColdStakeEnableHeight;
 
     if (!CheckTransaction(tx, state, fColdStakingActive)) {
         return false; // state filled in by CheckTransaction
@@ -1314,27 +1314,48 @@ bool ReadRawBlockFromDisk(std::vector<uint8_t>& block, const CBlockIndex* pindex
 
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
-    CAmount nSubsidy = 50 * COIN;
+    int64_t nSubsidy = 0 * COIN;
 
-    int reductions = (nHeight - 1) / consensusParams.BPSRewardMatchStep;
-
-    if (reductions <= 3)
+    if(nHeight <=1000) // first 1000 Blocks
     {
-        // Halve the reward - right shift
-        nSubsidy >>= reductions;
+       nSubsidy = 4623250 * COIN; // 4,623,250,000 YTP Instamine
+    }   
+    else if(nHeight<=2103400) // next 2102400 Blocks
+    {
+        nSubsidy = 2000 * COIN; // 4,204,800,000 YTP
     }
+    else if(nHeight<=4205800) // next 2102400 Blocks
+    {
+        nSubsidy = 1000 * COIN; // 2,102,400,000 YTP
+    }
+    else if(nHeight<=6308200) // next 2102400 Blocks
+    {
+        nSubsidy = 500 * COIN; // 1,051,200,000 YTP
+    } 
+    else if(nHeight<=8410600) // next 2102400 Blocks
+    {
+        nSubsidy = 250 * COIN; // 525,600,000 YTP
+    } 
+    else if(nHeight<=10513000) // next 2102400 Blocks
+    {
+        nSubsidy = 125 * COIN; // 262,800,000 YTP
+    } 
+    else if(nHeight<=12615400) // next 2102400 Blocks
+    {
+        nSubsidy = 62.5 * COIN; // 131,400,000 YTP
+    } 
+    else if(nHeight<=14717800) // next 2102400 Blocks
+    {
+        nSubsidy = 31.25 * COIN; // 65,700,000 YTP
+    } 
+    else if(nHeight<=16820200) // next 2102400 Blocks
+    {
+        nSubsidy = 15.625 * COIN; // 32,850,000 YTP
+    }  
     else
     {
-        nSubsidy >>= 3;
-        reductions = (nHeight - consensusParams.BPSRewardMatchHeight - 1) / consensusParams.nSubsidyHalvingInterval;
-
-        // Force block reward to zero at some point
-        if (reductions >= 64)
-            return 0;
-
-        // Subsidy is reduced by 25% every 700,000 blocks which will occur approximately every 4 years.
-        nSubsidy *= pow(0.75, reductions);
-    }
+        nSubsidy = 0 * COIN;
+    } 
 
     return nSubsidy;
 }
@@ -2576,16 +2597,6 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
 
     if (fJustCheck)
         return true;
-
-    pindex->nMoneySupply = (pindex->pprev? pindex->pprev->nMoneySupply : 0) + nValueOut - nValueIn;
-    //only start checking this error after block 5000 and only on testnet and mainnet, not regtest
-    if (pindex->nHeight > 5000 && !Params().MineBlocksOnDemand()) {
-        //sanity check in case an exploit happens that allows new coins to be minted
-        if(pindex->nMoneySupply > (uint64_t)(100000000 + ((pindex->nHeight - 5000) * 4)) * COIN){
-            LogPrintf("ConnectBlock(): Unknown error caused actual money supply to exceed expected money supply\n");
-            return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "incorrect-money-supply");
-        }
-    }
 
     if (!WriteUndoDataForBlock(blockundo, state, pindex, chainparams))
         return false;
@@ -3943,7 +3954,7 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     if (fCheckSig && !CheckBlockSignature(block))
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-signature", "bad proof-of-stake block signature");
 
-    bool fColdStakingActive = ::ChainActive().Height() >= consensusParams.BPSColdStakeEnableHeight;
+    bool fColdStakingActive = ::ChainActive().Height() >= consensusParams.YTPColdStakeEnableHeight;
 
     // Check cold-stake outputs are not abused
     if (fColdStakingActive && block.IsProofOfStake()) {

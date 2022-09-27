@@ -21,7 +21,7 @@ to the creation of new blocks.
 
 For more information, as well as an immediately usable, binary version of
 the Yatripay Core software, see https://www.yatripay.net/#wallet-bps, or read the
-[original whitepaper](https://www.yatripay.net/WhitePaperBPS.pdf).
+[original whitepaper](https://www.yatripay.net/WhitePaperYTP.pdf).
 
 License
 -------

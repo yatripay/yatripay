@@ -60,7 +60,7 @@ Represents the view to a single wallet.
 
 * UI elements like BitcoinAmountField, which inherit from QWidget.
 * `yatripaystrings.cpp`: automatically generated
-* `yatripayunits.(h/cpp)`: BPS / mBPS / etc handling
+* `yatripayunits.(h/cpp)`: YTP / mYTP / etc handling
 * `callback.h`
 * `guiconstants.h`: UI colors, app name, etc
 * `guiutil.h`: several helper functions
