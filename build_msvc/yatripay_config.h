@@ -262,7 +262,7 @@
 #define PACKAGE_TARNAME "yatripay"
 
 /* Define to the home page for this package. */
-#define PACKAGE_URL "https://yatripay.net/"
+#define PACKAGE_URL "https://yatripay.com/"
 
 /* Define to the version of this package. */
 #define PACKAGE_VERSION "0.19.99"
